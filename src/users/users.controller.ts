@@ -37,7 +37,7 @@ export class UsersController {
   @Post('/signup')
   async createUser(
     @Body() body: CreateUserDto,
-    @Session() session: any,
+    @Session() session: Record<string, any>,
   ): Promise<User> {
     const user = await this.authService.signup(body.email, body.password);
     session.userId = user.id;
@@ -47,7 +47,7 @@ export class UsersController {
   @Post('/signin')
   async signin(
     @Body() body: CreateUserDto,
-    @Session() session: any,
+    @Session() session: Record<string, any>,
   ): Promise<User> {
     const user = await this.authService.signin(body.email, body.password);
     session.userId = user.id;
@@ -55,7 +55,7 @@ export class UsersController {
   }
 
   @Post('/signout')
-  signout(@Session() session: any): void {
+  signout(@Session() session: Record<string, any>): void {
     session.userId = null;
   }
 

@@ -1,24 +1,29 @@
-### Signin 
+### Create a new user
 POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "new@asdf.com",
-  "password": "newlkl,mfd,f"
+  "email": "testkok@test.com",
+  "password": "12345"
 }
 
-### Signup
+### Sign in as an existing user
 POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
-  "email": "new@asdf.com",
-  "password": "newlkl,mfd,f"
+  "email": "test@test.com",
+  "password": "12345"
 }
 
+### Get the currently signed in user
+GET http://localhost:3000/auth/user
+
+### Sign out
+POST http://localhost:3000/auth/signout
 
 ### Find a particular user with a given ID
-GET http://localhost:3000/auth/3
+GET http://localhost:3000/auth/4
 
 ### Find all users with a given email
 GET http://localhost:3000/auth?email=asdf@asdf.com
@@ -27,7 +32,7 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 DELETE http://localhost:3000/auth/1
 
 ### Update a user
-PATCH http://localhost:3000/auth/2
+PATCH http://localhost:3000/auth/4
 content-type: application/json
 
 {

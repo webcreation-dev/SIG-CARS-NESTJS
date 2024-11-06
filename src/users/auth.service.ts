@@ -10,7 +10,7 @@ const scrypt = promisify(_scrypt);
 export class AuthService {
   constructor(private usersService: UsersService) {}
 
-  async signup(email: string, password: string) {
+  async signup(email: string, password: string): Promise<User> {
     // See if email is in use
     const user = await this.usersService.find(email);
 
@@ -35,7 +35,7 @@ export class AuthService {
     return newUser;
   }
 
-  async signin(email: string, password: string) {
+  async signin(email: string, password: string): Promise<User> {
     const [user] = await this.usersService.find(email);
 
     if (!user) {
