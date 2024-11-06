@@ -15,9 +15,11 @@ async function bootstrap(): Promise<void> {
     next();
   });
 
-  app.use(cookieSession({
-    keys: ['nestjs2024'],
-  }));
+  app.use(
+    cookieSession({
+      keys: ['nestjs2024'],
+    }),
+  );
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

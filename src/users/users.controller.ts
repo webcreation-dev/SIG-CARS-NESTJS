@@ -10,7 +10,7 @@ import {
   NotFoundException,
   Session,
   UseGuards,
- } from '@nestjs/common';
+} from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
@@ -22,7 +22,7 @@ import { CurrentUser } from './decorators/current-user.decorator';
 import { AuthGuard } from 'src/guards/auth.guard';
 @Controller('auth')
 @Serialize(UserDto)
-export class UsersController { 
+export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
@@ -32,17 +32,23 @@ export class UsersController {
   @UseGuards(AuthGuard)
   getUser(@CurrentUser() user: User): User {
     return user;
-  } 
+  }
 
   @Post('/signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session: any): Promise<User> {
+  async createUser(
+    @Body() body: CreateUserDto,
+    @Session() session: any,
+  ): Promise<User> {
     const user = await this.authService.signup(body.email, body.password);
     session.userId = user.id;
     return user;
   }
 
   @Post('/signin')
-  async signin(@Body() body: CreateUserDto, @Session() session: any): Promise<User> {
+  async signin(
+    @Body() body: CreateUserDto,
+    @Session() session: any,
+  ): Promise<User> {
     const user = await this.authService.signin(body.email, body.password);
     session.userId = user.id;
     return user;
@@ -51,7 +57,7 @@ export class UsersController {
   @Post('/signout')
   signout(@Session() session: any): void {
     session.userId = null;
-  }  
+  }
 
   @Get('/:id')
   async findUser(@Param('id') id: string): Promise<User> {
