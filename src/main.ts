@@ -1,10 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { Express } from 'express';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cookieSession = require('cookie-session');
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -16,16 +12,6 @@ async function bootstrap(): Promise<void> {
     next();
   });
 
-  app.use(
-    cookieSession({
-      keys: ['nestjs2024'],
-    }),
-  );
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
   await app.listen(3000);
 }
 
