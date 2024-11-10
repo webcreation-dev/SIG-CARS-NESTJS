@@ -32,9 +32,9 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 DELETE http://localhost:3000/auth/1
 
 ### Update a user
-PATCH http://localhost:3000/auth/4
+PATCH http://localhost:3000/auth/1
 content-type: application/json
 
 {
-  "password": "aaaaa"
+  "admin": true
 }

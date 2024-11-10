@@ -11,3 +11,15 @@ content-type: application/json
     "lng": -122.084,
     "lat": 37.422
 } 
+
+### Approve an existing report
+PATCH http://localhost:3000/reports/2
+content-type: application/json
+
+{
+    "approved": false
+}
+
+### Get an estimate for an existing value
+
+GET http://localhost:3000/reports?make=Toyota&model=Corolla&year=1980&lng=-122.084&lat=37.422&mileage=50000

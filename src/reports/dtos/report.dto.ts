@@ -8,12 +8,6 @@ export class ReportDto {
   price: number;
 
   @Expose()
-  make: string;
-
-  @Expose()
-  model: string;
-
-  @Expose()
   year: number;
 
   @Expose()
@@ -23,9 +17,19 @@ export class ReportDto {
   lat: number;
 
   @Expose()
+  make: string;
+
+  @Expose()
+  model: string;
+
+  @Expose()
   mileage: number;
 
-  @Transform(({ obj }) => obj.user.id)
+  @Expose()
+  approved: boolean;
+
+  // @Transform(({ obj }) => obj.user.id)
+  @Transform(({ obj }) => obj.user?.id ?? null)
   @Expose()
   userId: number;
 }
