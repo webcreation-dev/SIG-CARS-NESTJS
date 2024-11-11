@@ -45,5 +45,7 @@ export class ReportsController {
   }
 
   @Get('/')
-  getEstimate(@Query() query: GetEstimateDto) {}
+  getEstimate(@Query() query: GetEstimateDto) {
+    return this.reportService.createEstimate(query);
+  }
 }
